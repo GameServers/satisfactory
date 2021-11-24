@@ -1,0 +1,13 @@
+#!/bin/bash
+
+export LD_LIBRARY_PATH=${APPDIR}/linux64:$LD_LIBRARY_PATH
+
+/scripts/InstallAppID
+
+cd ${APPDIR}
+
+test -d ~/.config/Epic/FactoryGame/Saved || mkdir -p ~/.config/Epic/FactoryGame/Saved
+test -d ${APPDIR}/saves || mkdir -p ${APPDIR}/saves
+test -L ~/.config/Epic/FactoryGame/Saved/SaveGames || ln -s ${APPDIR}/saves ~/.config/Epic/FactoryGame/Saved/SaveGames
+
+./FactoryServer.sh -MultiHome=0.0.0.0
